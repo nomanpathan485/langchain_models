@@ -21,7 +21,7 @@ parser = StrOutputParser()
 report_generation_chain = RunnableSequence(prompt1, model, parser)
 branch_chain = RunnableBranch(
     (lambda x : len(x.split())>500, RunnableSequence(prompt2,model,parser)),
-    RunnablePassthrough()   
+    RunnablePassthrough()
 )
 
 chain = RunnableSequence(report_generation_chain,branch_chain)
